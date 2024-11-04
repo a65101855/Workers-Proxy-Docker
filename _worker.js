@@ -13,9 +13,18 @@ let 屏蔽爬虫UA = ['netcraft'];
 function routeByHosts(host) {
     // Docker相关的路由
     const routes = {
-        "docker": "registry-1.docker.io",
-        "test": "registry-1.docker.io",
-    };
+		// 生产环境
+		"quay": "quay.io",
+		"gcr": "gcr.io",
+		"k8s-gcr": "k8s.gcr.io",
+		"k8s": "registry.k8s.io",
+		"ghcr": "ghcr.io",
+		"cloudsmith": "docker.cloudsmith.io",
+		"nvcr": "nvcr.io",
+		
+		// 测试环境
+		"test": "registry-1.docker.io",
+	};
 
     if (host in routes) return [routes[host], false];
     else return [hub_host, true];
